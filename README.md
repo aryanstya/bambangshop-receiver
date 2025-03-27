@@ -104,3 +104,27 @@ Jawaban:
 
 
 #### Reflection Subscriber-2
+1) Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.
+
+
+Jawaban:
+    Apakah Anda telah mengeksplorasi hal-hal di luar langkah-langkah dalam tutorial, seperti src/lib.rs? Jika belum, jelaskan alasannya. Jika ya, jelaskan hal-hal yang Anda pelajari dari bagian kode lainnya.
+
+    Saya belum mulai mengeksplorasi bagian lain. Saya lebih fokus pada file yang secara langsung terkait dengan langkah-langkah dalam tutorial, seperti modul spesifik (controller, service, repository, dan model) yang disebutkan. Karena lib.rs tidak disebutkan dalam langkah-langkah tutorial, saya lebih memprioritaskan menyelesaikan tugas yang sudah diarahkan sebelum menjelajahi file tambahan.
+
+2) Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than one instance of Main app, will it still be easy enough to add to the system?
+
+Jawaban:
+    Setelah menyelesaikan tutorial dan menguji sistem notifikasi dengan menjalankan beberapa instance dari Receiver, jelaskan bagaimana pola Observer mempermudah penambahan subscriber. Bagaimana jika menjalankan lebih dari satu instance dari aplikasi Main, apakah tetap mudah untuk menambahkannya ke sistem?
+
+    Pola Observer mempermudah penambahan subscriber karena mereka cukup mengirim permintaan subscribe ke suatu topik. Hal ini secara otomatis menambahkan subscriber ke dalam daftar (dictionary) untuk topik tersebut. Ketika ada notifikasi yang harus dikirim, sistem akan secara otomatis melakukan iterasi ke semua subscriber dari topik tersebut dan mengirim permintaan notifikasi. Dengan cara ini, kode yang sudah ada dapat menangani subscriber baru tanpa perubahan tambahan.
+
+    Menjalankan beberapa instance dari aplikasi Main juga cukup mudah. Setiap Receiver dapat dikonfigurasi untuk terhubung ke instance tertentu dengan mengatur variabel APP_PUBLISHER_ROOT_URL. Alternatifnya, sistem routing dapat mengarahkan Receiver ke instance tertentu, yang kemudian akan diingat oleh Receiver. Namun, karena setiap instance dari aplikasi Main menggunakan daftar subscriber statisnya sendiri, daftar subscriber antar instance bisa berbeda kecuali jika digunakan basis data terpadu.
+
+
+3) Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).
+
+Jawaban:
+    Apakah Anda sudah mencoba membuat Test sendiri atau meningkatkan dokumentasi pada koleksi Postman Anda? Jika sudah, apakah fitur tersebut berguna untuk pekerjaan Anda (baik dalam tutorial maupun proyek kelompok)?
+
+    Saya belum mencoba membuat Test sendiri atau memperbarui dokumentasi di koleksi Postman. Saya lebih fokus menyelesaikan tugas-tugas tutorial dan mengimplementasikan fungsionalitas yang diperlukan. Namun, saya memahami bahwa fitur-fitur tersebut dapat sangat berguna untuk memastikan API bekerja dengan benar dan dapat membantu dalam pengembangan proyek kelompok di masa depan.
