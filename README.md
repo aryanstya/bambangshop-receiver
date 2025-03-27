@@ -86,4 +86,21 @@ This is the place for you to write reflections:
 
 #### Reflection Subscriber-1
 
+1) In this tutorial, we used RwLock<> to synchronise the use of Vec of Notifications. Explain why it is necessary for this case, and explain why we do not use Mutex<> instead?
+
+Jawaban:
+   `RwLock<>` digunakan karena memungkinkan beberapa *thread* untuk membaca data secara bersamaan (*multiple readers*), sementara hanya satu *thread* yang dapat menulis (*single writer*). Dalam kasus ini, kita sering membaca daftar notifikasi, sehingga `RwLock<>` lebih efisien dibandingkan `Mutex<>`, yang hanya mengizinkan satu *thread* untuk mengakses data, baik untuk membaca maupun menulis.  
+
+   Jika kita menggunakan `Mutex<>`, setiap *thread* yang hanya ingin membaca tetap harus menunggu akses eksklusif, yang dapat menyebabkan bottleneck dan menurunkan kinerja. Dengan `RwLock<>`, beberapa *thread* dapat membaca secara paralel tanpa saling menghambat, sehingga meningkatkan efisiensi dalam kasus yang lebih sering membaca daripada menulis.  
+
+
+2) In this tutorial, we used lazy_static external library to define Vec and DashMap as a “static” variable. Compared to Java where we can mutate the content of a static variable via a static function, why did not Rust allow us to do so?
+
+Jawaban:
+
+   Rust memiliki sistem kepemilikan (*ownership system*) dan aturan keamanan *thread* yang ketat untuk mencegah kondisi *race* (*data race*). Variabel `static` di Rust bersifat *immutable* secara default untuk menghindari masalah terkait akses bersamaan oleh beberapa *thread*.  
+
+   Di Java, variabel `static` dapat diubah secara langsung melalui fungsi `static` karena Java menggunakan *garbage collection* dan tidak secara ketat menegakkan kepemilikan data. Sementara itu, Rust tidak memiliki *garbage collector*, sehingga perlu memastikan bahwa akses ke variabel `static` aman dan bebas dari kondisi *race*. Oleh karena itu, untuk memodifikasi variabel `static`, kita harus menggunakan mekanisme sinkronisasi seperti `Mutex<>`, `RwLock<>`, atau `DashMap`, yang menjamin keamanan akses dalam lingkungan *multi-threaded*.
+
+
 #### Reflection Subscriber-2
